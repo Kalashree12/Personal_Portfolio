@@ -114,9 +114,9 @@ The website includes media queries for smaller screen sizes and adjusts:
 
 Email: snchy71@gmail.com
 
-GitHub: https://github.com/username
+GitHub: https://github.com/Kalashree12
 
-LinkedIn: https://linkedin.com
+LinkedIn: https://www.linkedin.com/in/kalashree-choudhary-b55041175?utm_source=share_via&utm_content=profile&utm_medium=member_android
 
 ## 📄 License
 
