@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalashree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-color: #121214;
+            --surface-color: #1a1a1e;
+            --accent-color: #2A69AC; /* Vibrant indigo */
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --font-family: 'Poppins', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 20, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid #27272a;
+        }
+
+	.profile-photo {
+    		width: 100%;
+    		max-width: 300px;         
+    		aspect-ratio: 1 / 1;      
+    		border-radius: 50%;       
+    		object-fit: cover;        
+    		border: 4px solid var(--accent-color);
+    		box-shrink: 0;
+	}
+
+	@media (max-width: 768px) {
+    	.profile-photo {
+        	max-width: 200px;     
+    		}
+	}
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent-color);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+            section {
+            padding: 8rem 2rem 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50%;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+            #hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding-top: 4rem;
+            gap: 4rem;
+        }
+        .hero-content {
+            max-width: 600px;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .hero-content span {
+            color: var(--accent-color);
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+        }
+        .avatar-placeholder {
+            width: 300px;
+            height: 300px;
+            background-color: var(--surface-color);
+            border: 4px solid var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 500;
+            flex-shrink: 0;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        
+        #about p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 800px;
+        }
+
+       
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .skill-card {
+            background-color: var(--surface-color);
+            padding: 1.25rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #27272a;
+            transition: border-color 0.3s;
+        }
+        .skill-card:hover {
+            border-color: var(--accent-color);
+        }
+
+       
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #27272a;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .project-link {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        
+        .contact-container {
+            background-color: var(--surface-color);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid #27272a;
+            max-width: 600px;
+        }
+        .contact-container p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .contact-item strong {
+            color: var(--text-main);
+        }
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+       
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #27272a;
+            margin-top: 4rem;
+        }
+
+       
+        @media (max-width: 768px) {
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                justify-content: center;
+                gap: 2rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .avatar-placeholder {
+                width: 200px;
+                height: 200px;
+            }
+            .nav-links {
+                display: none; /* Simple omission for vanilla HTML/CSS; can be expanded with mobile menu JS */
+            }
+            section {
+                padding: 6rem 1.5rem 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header>
+        <nav class="nav-container">
+            <a href="#hero" class="logo">Portfolio.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <section id="hero">
+    <div class="hero-content">
+        <h1>Hi, I'm <span>Kalashree</span></h1>
+        <p class="hero-subtitle">Frontend Developer & UI Designer</p>
+        <a href="#contact" class="btn">Get In Touch</a>
+    </div>
+    
+    <img src="C:\Users\snchy\OneDrive\Desktop\Project\photo.jpeg" alt="Kalashree Professional Photo" class="profile-photo">
+</section>
+
+    
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p>
+            I am a passionate frontend developer dedicated to building clean, user-friendly digital experiences. 
+            With a background in graphic design and computer science, I love bridging the gap between elegant aesthetics and robust, semantic code. 
+            When I'm not coding, you can find me hiking or exploring open-source projects on GitHub.
+        </p>
+    </section>
+
+    
+    <section id="skills">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">HTML5</div>
+            <div class="skill-card">CSS3</div>
+            <div class="skill-card">JavaScript</div>
+            <div class="skill-card">Git & GitHub</div>
+            <div class="skill-card">Responsive Design</div>
+            <div class="skill-card">Figma</div>
+        </div>
+    </section>
+
+ 
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+           
+            <div class="project-card">
+                <div>
+                    <h3 class="project-title">E-Commerce Landing Page</h3>
+                    <p class="project-desc">A fully responsive landing page optimized for high conversions, built using semantic HTML5 structures and CSS Grid/Flexbox layouts.</p>
+                </div>
+                <a href="https://github.com/username/project" class="project-link" target="_blank">View on GitHub &rarr;</a>
+            </div>
+          
+            <div class="project-card">
+                <div>
+                    <h3 class="project-title">Weather Dashboard App</h3>
+                    <p class="project-desc">A clean dashboard interface designed to showcase real-time weather analytics. Built with dark-mode defaults and flexible CSS components.</p>
+                </div>
+                <a href="https://github.com/username/project" class="project-link" target="_blank">View on GitHub &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container">
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+            <div class="contact-info">
+                <div class="contact-item"><strong>Name:</strong> Kalashree</div>
+                <div class="contact-item"><strong>Email:</strong> snchy71@gmail.com</div>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <p>&copy; 2026 Kalashree. Built from scratch with HTML & CSS.</p>
+    </footer>
+
+</body>
+</html>
